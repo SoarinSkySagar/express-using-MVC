@@ -1,4 +1,5 @@
 const express  = require('express')
+const path = require('path')
 
 const middlewaresController = require('./controllers/middlewares.controller')
 const friendsRouter = require('./routes/friends.router')
@@ -8,6 +9,7 @@ const app = express()
 const PORT = 9000
 
 app.use(middlewaresController.responseTime)
+app.use('/site', express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 
 app.get('/', (req, res) => {
